@@ -61,7 +61,6 @@ Screen {
 				last_changed: app.devices[index]['last_changed']
 				last_updated: app.devices[index]['last_updated']
 				switchState: app.devices[index]['state']
-				image: "light"
 			}
 		}
 	}

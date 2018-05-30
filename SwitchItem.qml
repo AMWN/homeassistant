@@ -10,8 +10,8 @@ Item {
 	property string friendly_name;
 	property string last_changed;
 	property string last_updated;
-	property string image;
 	property string switchState;
+	property string type: entity_id.split('.')[0]
 
 	property color colorLight: "#f0f0f0"
 	property color colorMedium: "#A8A8A8"
@@ -55,12 +55,36 @@ Item {
 		}
 	]
 
+	function getImage(switchState, type) {
+		switch (type) {
+			case 'light':
+			case 'switch':
+				{
+					return (switchState === "off") ? "./drawables/bulb_off.png" : "./drawables/bulb_on.png"
+					break;
+				}
+			default:
+				return "./drawables/hass.png"
+		}
+	}
+
 	MouseArea {
 		anchors.fill: parent
 		onPressed: {
 			switchItem.state = "down"
-			switchState = ( switchState == "off" ? "on" : "off" )
-			app.postHomeAssistant(entity_id, switchState)
+			
+			switch (type) {
+				case 'light':
+				case 'switch':
+					{
+						switchState = (switchState == "off" ? "on" : "off")
+						app.postHomeAssistant(entity_id, switchState)
+						break;
+					}
+				default:
+					
+			}
+
 		}
 		onReleased: {
 			switchItem.state = "up"
@@ -89,7 +113,7 @@ Item {
 			visible: true;
 			width: 30
 			height: 38
-			source: (switchState === "off") ? "./drawables/bulb_off.png" : "./drawables/bulb_on.png"
+			source: getImage(switchState, type)
 		}
 
 		Text {
@@ -136,7 +160,7 @@ Item {
 				pixelSize: 9
 			}
 			color: colorMedium
-			text: last_updated.substring(0,16)
+			text: last_updated.substring(0, 16)
 		}
 	}
 }
