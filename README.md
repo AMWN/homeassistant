@@ -15,7 +15,7 @@ This design of this app is inspired by [Dashtics for toon](https://github.com/Da
 * Run command `killall qt-gui` to restart the gui and load home assistant.
 * Click on the new home assistant icon in the notification-bar
 * Click on 'Settings' to enter ip, port, password, and groups (comma delimited).
-* After this, the buttons should be showed, based on the devices in the group(s).
+* After this, the buttons should show up, based on the devices in the group(s).
 
 ## Home Assistant Configuration
 * Give Home Assitant a password
