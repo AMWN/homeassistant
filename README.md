@@ -44,5 +44,8 @@ qtqt:245:respawn:/usr/bin/startqt >/var/log/qt 2>&1
 You could read the /var/log/qt then after rebooting (for example "tail -f /var/log/qt").
 
 ```
-
-
+Or try connecting to Home Assistant manually, from toon with curl.
+```
+curl http://IP:PORT/api/states?api_password=PASSWORD
+```
+If this isn't responding the states object, you should fix this first. 
