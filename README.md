@@ -6,7 +6,7 @@ Other devices will show up, but not able to control.
 Design of this app is inspired by [Dashtics for toon](https://github.com/Dashticz/dashticz_toon).
 
 ## Screenshots
-![alt tag](https://i.imgur.com/To5vfIx.png)
+![alt tag](https://i.imgur.com/J7qrXrM.png)
 
 ## Manual Installation
 * Download zip from this repository, unzip contents to a folder named 'homeassistant' and upload this folder to: '/HCBv2/qml/apps/'
