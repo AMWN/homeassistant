@@ -28,7 +28,10 @@ http:
   api_password: PASSWORD
   cors_allowed_origins:
     - http://192.168.0.116
+    - http://nas
 ```
+*as far I know, https connection is not possible with Toon*
+
 ## Debug
 If things ain't going as expected, try debugging.
 ```
