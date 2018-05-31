@@ -1,10 +1,9 @@
 # Home Assistant (for Toon)
 This a Home Assistant App for Toon. It is a basic app to turn devices on and off.
-Right now only devicetypes are allowed that are able to turn on and off. 
+Right now only devicetypes are allowed that are able to turn on and off (switch and lights).
+Other devices will show up, but not able to control.
 
-The buttons with state will be generated based on the groups you set in the settings.
-
-This design of this app is inspired by [Dashtics for toon](https://github.com/Dashticz/dashticz_toon).
+Design of this app is inspired by [Dashtics for toon](https://github.com/Dashticz/dashticz_toon).
 
 ## Screenshots
 ![alt tag](https://i.imgur.com/To5vfIx.png)
@@ -20,7 +19,7 @@ This design of this app is inspired by [Dashtics for toon](https://github.com/Da
 ## Home Assistant Configuration
 * Give Home Assitant a password
 * Add CORS
-* Create custom groups specifically for Toon (optional)
+* Create custom invisible groups specifically for Toon (optional)
 
 ### Example config:
 
@@ -30,6 +29,17 @@ http:
   cors_allowed_origins:
     - http://192.168.0.116
 ```
+## Debug
+If things ain't going as expected, try debugging.
+```
+Try starting the GT-GUI with logging enabled. Change this in /etc/inittab and reboot.
+normal:
+qtqt:245:respawn:/usr/bin/startqt >/dev/null 2>&1
+change to:
+qtqt:245:respawn:/usr/bin/startqt >/var/log/qt 2>&1
 
+You could read the /var/log/qt then after rebooting (for example "tail -f /var/log/qt").
+
+```
 
 
