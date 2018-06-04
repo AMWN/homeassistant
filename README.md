@@ -33,7 +33,13 @@ http:
 *as far I know, https connection is not possible with Toon*
 
 ## Debug
-If things ain't going as expected, try debugging.
+If things ain't going as expected, connecting to Home Assistant manually, from toon with curl.
+```
+curl http://IP:PORT/api/states?api_password=PASSWORD
+```
+If this isn't responding the states object, you should fix this first. 
+
+Or try try debugging:
 ```
 Try starting the GT-GUI with logging enabled. Change this in /etc/inittab and reboot.
 normal:
@@ -44,8 +50,4 @@ qtqt:245:respawn:/usr/bin/startqt >/var/log/qt 2>&1
 You could read the /var/log/qt then after rebooting (for example "tail -f /var/log/qt").
 
 ```
-Or try connecting to Home Assistant manually, from toon with curl.
-```
-curl http://IP:PORT/api/states?api_password=PASSWORD
-```
-If this isn't responding the states object, you should fix this first. 
+
