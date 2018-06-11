@@ -15,7 +15,7 @@ SystrayIcon {
 
 	onDimStateChanged: {
 		if (dimState)
-			colorize.setColor(colors.inboxSystrayIconDim);
+			colorize.setColor(colors.inboxSystrayIconDim);			
 		else
 			colorize.setColor("#07aee6");
 	}

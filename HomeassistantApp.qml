@@ -41,12 +41,6 @@ App {
   function simpleSynchronous(device, command) {
     var url = "http://" + settings.host + ":" + settings.port + "/api/services/homeassistant/" + command + "?api_password=" + settings.password
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        // when switchting a group, update all switches states
-        oneTimeStateUpdate.start()
-      }
-    }
     xmlhttp.open("POST", url, true);
     xmlhttp.send(JSON.stringify({
       'entity_id': device
@@ -72,54 +66,58 @@ App {
     var localDevices = []
     for (var device in states) {
       var device = states[device]
-      if(device.group == selectedGroup) localDevices.push(device)
+      if (device.group == selectedGroup) localDevices.push(device)
     }
     devices = localDevices
   }
 
   function readDeviceStatus() {
-    var xmlhttp = new XMLHttpRequest();
-    var url = "http://" + settings.host + ":" + settings.port + "/api/states?api_password=" + settings.password
-    xmlhttp.onreadystatechange = function () {
-      if (xmlhttp.readyState == 4) {
-        if (xmlhttp.status == 200) {
-          try {
-            var allStates = JSON.parse(xmlhttp.responseText);
-            var devicesInGroupsStates = [];
-            
-            // get all devices in groups
-            for (var i in allStates) {
-              // loop trough all states
-              var state = allStates[i]
-              var group = state.attributes.friendly_name;
-              // if group found in states object
-              if (groups.indexOf(group) !== -1) {
-                // then for all devices op the group
-                for (var device in state.attributes.entity_id) {
-                  var device = state.attributes.entity_id[device];
-                  for (var j in allStates) {
-                    // find state and push it to the array with states
-                    var deviceState = allStates[j]
-                    if (deviceState.entity_id == device) {
-                      deviceState['group'] = group
-                      devicesInGroupsStates.push(deviceState)
+    // when in DimState no refresh of devices states
+      var xmlhttp = new XMLHttpRequest();
+      var url = "http://" + settings.host + ":" + settings.port + "/api/states?api_password=" + settings.password
+      xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4) {
+          if (xmlhttp.status == 200) {
+            try {
+              var allStates = JSON.parse(xmlhttp.responseText);
+              var devicesInGroupsStates = [];
+
+              // get all devices in groups
+              loop1:
+                for (var i in allStates) {
+                  // loop trough all states
+                  var state = allStates[i]
+                  var group = state.attributes.friendly_name;
+                  // if group found in states object
+                  if (groups.indexOf(group) !== -1) {
+                    // then for all devices of the group
+                    loop2: for (var device in state.attributes.entity_id) {
+                      var device = state.attributes.entity_id[device];
+                      loop3:
+                        for (var j in allStates) {
+                          // find state and push it to the array with states
+                          var deviceState = allStates[j]
+                          if (deviceState.entity_id == device) {
+                            deviceState['group'] = group
+                            devicesInGroupsStates.push(deviceState)
+                            break loop3;
+                          }
+                        }
                     }
                   }
                 }
-              }
+
+              states = devicesInGroupsStates
+              devicesOfSelectedGroup()
+
+            } catch (err) {
+              console.log(err)
             }
-
-            states = devicesInGroupsStates
-            devicesOfSelectedGroup()
-
-          } catch (err) {
-            console.log(err)
           }
         }
       }
-    }
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+      xmlhttp.open("GET", url, true);
+      xmlhttp.send();
   }
 
   function readSettings() {
@@ -153,7 +151,7 @@ App {
 
   Timer {
     id: oneTimeStateUpdate
-    interval: 3000
+    interval: 2000
     triggeredOnStart: false
     running: false
     repeat: false

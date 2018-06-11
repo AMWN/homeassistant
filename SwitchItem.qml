@@ -64,7 +64,7 @@ Item {
 					break;
 				}
 			default:
-				return "./drawables/hass.png"
+				return "./drawables/sensor.png"
 		}
 	}
 
