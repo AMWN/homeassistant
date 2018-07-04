@@ -9,8 +9,8 @@ Design of this app is inspired by [Dashtics for toon](https://github.com/Dashtic
 ![alt tag](https://i.imgur.com/J7qrXrM.png)
 
 ## Manual Installation
-* Download zip from this repository, unzip contents to a folder named 'Homeassistant' and upload this folder to: '/HCBv2/qml/apps/'
-* Add 'Homeassistant' to the array of 'appsToLoad' in '/HCBv2/qml/qb/base/Globals.qml'
+* Download zip from this repository, unzip contents to a folder named 'homeAssistant' and upload this folder to: '/HCBv2/qml/apps/'
+* Add 'homeAssistant' to the array of 'appsToLoad' in '/HCBv2/qml/qb/base/Globals.qml'
 * Run command `killall qt-gui` to restart the gui and load home assistant.
 * Click on the new home assistant icon in the notification-bar
 * Click on 'Settings' to enter ip, port, password, and groups (friendly_name, comma delimited).
