@@ -57,12 +57,12 @@ Item {
 
 	function getImage(switchState, type) {
 		switch (type) {
-			case 'group':
-				if(switchState != "on" && switchState != "off")
-					break;
 			case 'light':
 			case 'switch':
-				return (switchState === "off") ? "./drawables/bulb_off.png" : "./drawables/bulb_on.png"
+				{
+					return (switchState === "off") ? "./drawables/bulb_off.png" : "./drawables/bulb_on.png"
+					break;
+				}
 			default:
 				return "./drawables/sensor.png"
 		}
@@ -72,13 +72,8 @@ Item {
 		anchors.fill: parent
 		onPressed: {
 			switchItem.state = "down"
-
+			
 			switch (type) {
-				case 'group':
-					{
-						if(switchState != "on" && switchState != "off")
-							break;
-					}
 				case 'light':
 				case 'switch':
 					{
@@ -87,7 +82,7 @@ Item {
 						break;
 					}
 				default:
-					break;
+					
 			}
 
 		}
