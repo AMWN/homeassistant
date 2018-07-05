@@ -21,7 +21,7 @@ SystrayIcon {
 	}
 
 	Image {
-		id: imgHomeassistant
+		id: imghomeAssistant
 		anchors.centerIn: parent
 		source: "./drawables/hass.png"
 		effect: Colorize {id: colorize; color: "#07aee6"; strength: 1.0}

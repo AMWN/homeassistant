@@ -7,10 +7,10 @@ App {
   // These are the URL's for the QML resources from which our widgets will be instantiated.
   // By making them a URL type property they will automatically be converted to full paths,
   // preventing problems when passing them around to code that comes from a different path.
-  property url trayUrl: "HomeassistantTray.qml";
+  property url trayUrl: "HomeAssistantTray.qml";
   property url thumbnailIcon: "./drawables/hass.png"
-  property url homeassistantScreenUrl: "HomeassistantScreen.qml"
-  property url homeassistantSettingsUrl: "HomeassistantSettings.qml"
+  property url homeassistantScreenUrl: "HomeAssistantScreen.qml"
+  property url homeassistantSettingsUrl: "HomeAssistantSettings.qml"
 
   //devices
   property variant devices: []
@@ -134,7 +134,7 @@ App {
       }
     }
 
-    xmlhttp2.open("GET", "file:///HCBv2/qml/apps/Homeassistant/settings.txt");
+    xmlhttp2.open("GET", "file:///HCBv2/qml/apps/homeAssistant/settings.txt");
     xmlhttp2.send();
   }
 

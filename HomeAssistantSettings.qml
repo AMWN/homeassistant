@@ -6,7 +6,7 @@ Screen {
 
 	id: homeassistantSettingsScreen
 	screenTitleIconUrl: "drawables/hass.png"
-	screenTitle: qsTr("Homeassistant - Instellingen")
+	screenTitle: qsTr("Home Assistant - Instellingen")
 
 	hasBackButton: false
 	hasHomeButton: false
@@ -36,7 +36,7 @@ Screen {
 					stage.openFullscreen(app.homeassistantScreenUrl);
 			}
 		}
-		saveFile.open("PUT", "file:///HCBv2/qml/apps/Homeassistant/settings.txt");
+		saveFile.open("PUT", "file:///HCBv2/qml/apps/homeAssistant/settings.txt");
 		saveFile.send(JSON.stringify(app.settings));
 	}
 
@@ -68,13 +68,13 @@ Screen {
 		return null;
 	}
 
-	function updateHomeassistantHostLabel(text) {
+	function updateHomeAssistantHostLabel(text) {
 		if (text) {
 			homeassistantHostLabel.inputText = text;
 		}
 	}
 
-	function updateHomeassistantPortLabel(text) {
+	function updateHomeAssistantPortLabel(text) {
 		if (text) {
 			if (text.match(/^[0-9]*$/)) {
 				homeassistantPortLabel.inputText = text;
@@ -82,11 +82,11 @@ Screen {
 		}
 	}
 
-	function updateHomeassistantPasswordLabel(text) {
+	function updateHomeAssistantPasswordLabel(text) {
 		if (text) homeassistantPasswordLabel.inputText = text;
 	}
 
-	function updateHomeassistantGroupsLabel(text) {
+	function updateHomeAssistantGroupsLabel(text) {
 		if (text) homeassistantGroupsLabel.inputText = text;
 	}
 
@@ -96,7 +96,7 @@ Screen {
 		id: homeassistantText
 		font.pixelSize: 16
 		font.family: qfont.semiBold.name
-		text: "Homeassistant"
+		text: "Home Assistant"
 		anchors {
 			top: parent.top
 			topMargin: 20
@@ -119,7 +119,7 @@ Screen {
 		}
 
 		onClicked: {
-			qkeyboard.open("Hostnaam", homeassistantHostLabel.inputText, updateHomeassistantHostLabel, hostnameValidate);
+			qkeyboard.open("Hostnaam", homeassistantHostLabel.inputText, updateHomeAssistantHostLabel, hostnameValidate);
 		}
 	}
 
@@ -137,7 +137,7 @@ Screen {
 		}
 
 		onClicked: {
-			qnumKeyboard.open("Poort", homeassistantPortLabel.inputText, "Nummer", 1, updateHomeassistantPortLabel, numValidate);
+			qnumKeyboard.open("Poort", homeassistantPortLabel.inputText, "Nummer", 1, updateHomeAssistantPortLabel, numValidate);
 		}
 	}
 
@@ -157,7 +157,7 @@ Screen {
 		}
 
 		onClicked: {
-			qkeyboard.open("Wachtwoord", homeassistantPasswordLabel.inputText, updateHomeassistantPasswordLabel);
+			qkeyboard.open("Wachtwoord", homeassistantPasswordLabel.inputText, updateHomeAssistantPasswordLabel);
 		}
 	}
 
@@ -176,7 +176,7 @@ Screen {
 		}
 
 		onClicked: {
-			qkeyboard.open("Group", homeassistantGroupsLabel.inputText, updateHomeassistantGroupsLabel);
+			qkeyboard.open("Group", homeassistantGroupsLabel.inputText, updateHomeAssistantGroupsLabel);
 		}
 	}
 

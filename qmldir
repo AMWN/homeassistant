@@ -1,3 +1,3 @@
-module apps.Homeassistant
-Homeassistant 1.0 HomeassistantApp.qml
-homeassistantScreen 1.0 homeassistantScreen.qml
+module apps.homeAssistant
+homeAssistant 1.0 HomeAssistantApp.qml
+homeAssistantScreen 1.0 HomeAssistantScreen.qml
