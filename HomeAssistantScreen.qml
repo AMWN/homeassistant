@@ -8,7 +8,7 @@ Screen {
 	screenTitle: qsTr("Home Assistant")
 
 	onShown: {
-		addCustomTopRightButton("Settings");	
+		addCustomTopRightButton("Instellingen");	
 	}
 
 	onCustomButtonClicked: {
