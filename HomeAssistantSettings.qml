@@ -18,6 +18,8 @@ Screen {
 		if (homeassistantPortLabel.inputText == "") homeassistantPortLabel.inputText = app.settings.port;
 		if (homeassistantPasswordLabel.inputText == "") homeassistantPasswordLabel.inputText = app.settings.password;
 		if (homeassistantGroupsLabel.inputText == "") homeassistantGroupsLabel.inputText = app.settings.groups;
+		app.ssl = app.settings.ssl;
+		sslButton.source: app.ssl ? app.imgButtonOn : app.imgButtonOff;
 	}
 
 	onCustomButtonClicked: {
@@ -141,6 +143,67 @@ Screen {
 		}
 	}
 
+	EditTextLabel {
+		id: homeassistantPortLabel
+		width: 350
+		height: 35
+		leftText: "Port"
+		leftTextAvailableWidth: 200
+
+		anchors {
+			left: homeassistantHostLabel.left
+			top: homeassistantHostLabel.bottom
+			topMargin: 10
+		}
+
+		onClicked: {
+			qnumKeyboard.open("Poort", homeassistantPortLabel.inputText, "Nummer", 1, updateHomeAssistantPortLabel, numValidate);
+		}
+	}
+	
+	Rectangle {
+            id: sslRect
+            width: 200
+            height: 35
+            color: "transparent"
+            anchors {
+                top: homeassistantPortLabel.bottom
+                left: homeassistantPortLabel.right
+            }
+
+            Text {
+                id: sslLabel
+                width: 150
+                text: "SSL"
+                font.pixelSize: 12
+                color: "Black" 
+                wrapMode: Text.WordWrap
+                anchors {
+                    left: parent.left
+                    verticalCenter: parent.verticalCenter
+                    leftMargin: 20
+                }
+            }
+
+            Image {
+                id: sslButton
+                width: 50
+                height: 35
+                source: app.ssl ? app.imgButtonOn : app.imgButtonOff
+                smooth: true
+                anchors {
+                    right: parent.right
+                    verticalCenter: parent.verticalCenter
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+						app.ssl = !app.ssl                        
+                    }
+                }
+            }
+}
 
 	EditTextLabel {
 		id: homeassistantPasswordLabel

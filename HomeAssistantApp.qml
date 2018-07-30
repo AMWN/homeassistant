@@ -12,6 +12,11 @@ App {
   property url homeassistantScreenUrl: "HomeAssistantScreen.qml"
   property url homeassistantSettingsUrl: "HomeAssistantSettings.qml"
 
+  property string imgButtonOff : "./drawables/button_off.png"
+  property string imgButtonOn : "./drawables/button_on.png"
+  
+  property bool ssl : false
+  
   //devices
   property variant devices: []
   property variant groups: []
@@ -23,7 +28,8 @@ App {
     "host": "",
     "port": "",
     "password": "",
-    "groups": ""
+    "groups": "",
+	"ssl": false
   }
 
 
@@ -39,7 +45,7 @@ App {
   }
 
   function simpleSynchronous(device, command) {
-    var url = "http://" + settings.host + ":" + settings.port + "/api/services/homeassistant/" + command + "?api_password=" + encodeURIComponent(settings.password)
+    var url = (app.settings.ssl ? "https://" : "http://") + settings.host + ":" + settings.port + "/api/services/homeassistant/" + command + "?api_password=" + encodeURIComponent(settings.password)
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", url, true);
     xmlhttp.send(JSON.stringify({
@@ -74,7 +80,7 @@ App {
   function readDeviceStatus() {
     // when in DimState no refresh of devices states
       var xmlhttp = new XMLHttpRequest();
-      var url = "http://" + settings.host + ":" + settings.port + "/api/states?api_password=" + encodeURIComponent(ettings.password)
+      var url = (app.settings.ssl ? "https://" : "http://") + settings.host + ":" + settings.port + "/api/states?api_password=" + encodeURIComponent(ettings.password)
       xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4) {
           if (xmlhttp.status == 200) {
