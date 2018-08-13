@@ -39,7 +39,7 @@ App {
   }
 
   function simpleSynchronous(device, command) {
-    var url = "http://" + settings.host + ":" + settings.port + "/api/services/homeassistant/" + command + "?api_password=" + encodeURIComponent(settings.password)
+    var url = "http://" + settings.host + ":" + settings.port + "/api/services/homeassistant/" + command + (settings.password ? "?api_password=" + encodeURIComponent(settings.password) : "")
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", url, true);
     xmlhttp.send(JSON.stringify({
@@ -74,7 +74,7 @@ App {
   function readDeviceStatus() {
     // when in DimState no refresh of devices states
       var xmlhttp = new XMLHttpRequest();
-      var url = "http://" + settings.host + ":" + settings.port + "/api/states?api_password=" + encodeURIComponent(ettings.password)
+      var url = "http://" + settings.host + ":" + settings.port + "/api/states + (settings.password ? "?api_password=" + encodeURIComponent(settings.password) : "")
       xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4) {
           if (xmlhttp.status == 200) {
